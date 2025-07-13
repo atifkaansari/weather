@@ -1,0 +1,60 @@
+body {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weather-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.current-temp {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #2d3436;
+}
+
+.weather-icon {
+    font-size: 5rem;
+    color: #fdcb6e;
+}
+
+.forecast-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-5px);
+}
+
+.search-btn {
+    background: linear-gradient(45deg, #00b894, #00cec9);
+    border: none;
+    border-radius: 10px;
+}
+
+.search-btn:hover {
+    background: linear-gradient(45deg, #00a085, #00b7bd);
+}
+
+.detail-item {
+    background: rgba(116, 185, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px 0;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
