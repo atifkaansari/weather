@@ -14,7 +14,7 @@ Güncel ve 5 günlük hava durumu tahminlerini gösteren, şehir arama destekli,
 
 ## 🖼️ Ekran Görüntüsü
 
-![hava durumu uygulaması ekran görüntüsü](https://i.imgur.com/jkoXOKi.png)
+![hava durumu uygulaması ekran görüntüsü](https://i.imgur.com/4I83zNt.png)
 
 ## 🛠️ Kullanılan Teknolojiler
 
