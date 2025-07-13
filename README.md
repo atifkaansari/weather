@@ -9,7 +9,6 @@ Güncel ve 5 günlük hava durumu tahminlerini gösteren, şehir arama destekli,
 - 📍 Kullanıcının konumuna göre otomatik hava durumu tespiti
 - 🌤️ Hava durumuna göre dinamik arka plan renkleri
 - ❄️ Kar ve ☔️ yağmur animasyon efektleri
-- 💾 Son aranan şehir bilgisini tarayıcıda kaydetme
 - 🖥️ Tam responsive tasarım (mobil ve masaüstü uyumlu)
 
 ## 🖼️ Ekran Görüntüsü
