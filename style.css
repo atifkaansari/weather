@@ -58,3 +58,99 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+body.bg-clear {
+    background: linear-gradient(135deg, #ffe066 0%, #e1b900 100%) !important;
+}
+body.bg-partlycloudy {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
+}
+body.bg-clouds {
+    background: linear-gradient(135deg, #b2bec3 0%, #636e72 100%) !important;
+}
+body.bg-rain {
+    background: linear-gradient(135deg, #495057 0%, #212529 100%) !important;
+    /* Yağmur efekti için overlay eklenebilir */
+}
+body.bg-snow {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%) !important;
+    /* Kar efekti için overlay eklenebilir */
+}
+body.bg-thunderstorm {
+    background: linear-gradient(135deg, #434343 0%, #262626 100%) !important;
+}
+body.bg-mist {
+    background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%) !important;
+}
+
+.snow-effect, .rain-effect {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 2147483647;
+    overflow: hidden;
+}
+.snowflake {
+    position: absolute;
+    top: -40px;
+    color: #fff;
+    font-size: 1.2em;
+    opacity: 0.8;
+    animation: snow-fall 6s linear infinite;
+}
+@keyframes snow-fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+.rain-drop {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 18px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 1px;
+    opacity: 0.8;
+    animation: rain-fall 1.2s linear infinite;
+}
+@keyframes rain-fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+.snow-effect, .rain-effect {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -40px;
+    color: #fff;
+    font-size: 1.2em;
+    opacity: 0.9;
+    animation: snow-fall 6s linear infinite;
+}
+
+@keyframes snow-fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+.rain-drop {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 1px;
+    animation: rain-fall 1s linear infinite;
+}
+
+@keyframes rain-fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}

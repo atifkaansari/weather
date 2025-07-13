@@ -1,4 +1,3 @@
-
 const url = 'https://api.openweathermap.org/data/2.5/';
 const key = "BURAYA_KENDİ_API_KEYİNİ_YAZ";
 
@@ -44,16 +43,88 @@ function displayResult(result) {
         alert("Şehir bulunamadı!");
         return;
     }
+    // Hava durumuna göre arkaplan değiştir
+    document.body.classList.remove('bg-clear', 'bg-partlycloudy', 'bg-clouds', 'bg-rain', 'bg-snow', 'bg-thunderstorm', 'bg-mist');
+    removeWeatherEffects();
+    const icon = result.weather[0].icon;
+    // Ana karttaki ikonun dinamik olarak değişmesi
+    let iconHtml = '<i class="fas fa-question weather-icon"></i>';
+    if (icon.startsWith('01')) { // Güneşli
+        iconHtml = '<i class="fas fa-sun weather-icon text-warning"></i>';
+        document.body.classList.add('bg-clear');
+    } else if (icon.startsWith('02')) { // Parçalı bulutlu
+        iconHtml = '<i class="fas fa-cloud-sun weather-icon text-warning"></i>';
+        document.body.classList.add('bg-partlycloudy');
+    } else if (icon.startsWith('03') || icon.startsWith('04')) { // Bulutlu/kapalı
+        iconHtml = '<i class="fas fa-cloud weather-icon text-secondary"></i>';
+        document.body.classList.add('bg-clouds');
+    } else if (icon.startsWith('09') || icon.startsWith('10')) { // Yağmur
+        iconHtml = '<i class="fas fa-cloud-rain weather-icon text-primary"></i>';
+        document.body.classList.add('bg-rain');
+        setTimeout(addRainEffect, 100);
+    } else if (icon.startsWith('11')) { // Fırtına
+        iconHtml = '<i class="fas fa-bolt weather-icon text-warning"></i>';
+        document.body.classList.add('bg-thunderstorm');
+    } else if (icon.startsWith('13')) { // Kar
+        iconHtml = '<i class="fas fa-snowflake weather-icon text-info"></i>';
+        document.body.classList.add('bg-snow');
+        setTimeout(addSnowEffect, 100);
+    } else if (icon.startsWith('50')) { // Sis/duman
+        iconHtml = '<i class="fas fa-smog weather-icon text-muted"></i>';
+        document.body.classList.add('bg-mist');
+    }
+    document.querySelector('.weather-icon').outerHTML = iconHtml;
     document.getElementById('cityName').innerText = `${result.name}, ${result.sys.country}`;
     document.getElementById('currentTemp').innerText = `${Math.round(result.main.temp)}°C`;
     document.getElementById('weatherDesc').innerText = result.weather[0].description.toUpperCase();
-    document.getElementById('visibility').innerText = `${(result.visibility / 1000).toFixed(1)} km`;
-    document.getElementById('humidity').innerText = `${result.main.humidity}%`;
+    // Görüş mesafesi kontrolü
+    let visibilityText = '--';
+    if (typeof result.visibility === 'number' && result.visibility < 10000) {
+        visibilityText = `${(result.visibility / 1000).toFixed(1)} km`;
+    }
+    document.getElementById('visibility').innerText = visibilityText;
+    // document.getElementById('humidity').innerText = `${result.main.humidity}%`;
     document.getElementById('windSpeed').innerText = `${Math.round(result.wind.speed * 3.6)} km/h`;
     document.getElementById('feelsLike').innerText = `${Math.round(result.main.feels_like)}°C`;
     const date = new Date(result.dt * 1000);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('currentDate').innerText = date.toLocaleDateString('tr-TR', options);
+}
+
+function addSnowEffect() {
+    removeWeatherEffects();
+    const snow = document.createElement('div');
+    snow.className = 'snow-effect';
+    snow.style.zIndex = '2147483647';
+    for (let i = 0; i < 40; i++) {
+        const flake = document.createElement('span');
+        flake.className = 'snowflake';
+        flake.style.left = Math.random() * 100 + 'vw';
+        flake.style.animationDelay = (Math.random() * 6) + 's';
+        flake.style.fontSize = (Math.random() * 16 + 12) + 'px';
+        flake.innerHTML = '❄';
+        snow.appendChild(flake);
+    }
+    document.body.appendChild(snow);
+}
+
+function addRainEffect() {
+    removeWeatherEffects();
+    const rain = document.createElement('div');
+    rain.className = 'rain-effect';
+    rain.style.zIndex = '2147483647';
+    for (let i = 0; i < 60; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'rain-drop';
+        drop.style.left = Math.random() * 100 + 'vw';
+        drop.style.animationDelay = (Math.random() * 1.2) + 's';
+        rain.appendChild(drop);
+    }
+    document.body.appendChild(rain);
+}
+
+function removeWeatherEffects() {
+    document.querySelectorAll('.snow-effect, .rain-effect').forEach(e => e.remove());
 }
 
 function displayForecast(data) {
